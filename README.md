@@ -533,7 +533,7 @@ Enterprise Cyber Resilience Engineering
 # 🤝 Connect With Me
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/solomon-henry/">
+  <a href="https://www.linkedin.com/in/bassey-solomon-henry/">
     <img src="https://img.shields.io/badge/LinkedIn-Solomon%20Henry-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   <a href="https://github.com/solomonhenry-afk">
@@ -566,6 +566,7 @@ The purpose is to demonstrate practical readiness for security engineering and m
 #  Author
 
 **Bassey Solomon Henry**
+
 Cybersecurity | Detection Engineering | Network Security | GRC Engineering | IAM Governance Intelligence
 
 I build security programs that connect technical telemetry, infrastructure controls, identity exposure, risk analytics, remediation engineering, and executive reporting.
