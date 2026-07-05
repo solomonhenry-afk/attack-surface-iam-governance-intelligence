@@ -1,0 +1,58 @@
+{
+  "project": "Lighthouse Technology - Domain 4 Task 3",
+  "task": "Attack-Surface & IAM Governance Intelligence",
+  "generated_utc": "2026-07-05T16:46:19.687469+00:00",
+  "integrity_method": "SHA-256",
+  "synthetic_data_notice": "This project uses synthetic training data. It demonstrates an evidence-driven IAM governance workflow and does not represent live enterprise findings.",
+  "artifact_count": 6,
+  "artifacts": [
+    {
+      "artifact_id": "EVID-T3-001",
+      "path": "datasets/iam_governance_inventory.json",
+      "purpose": "Defines the IAM governance data domains and control scope.",
+      "exists": true,
+      "sha256": "33497838a6f95ec72b5d71e9d8c802f5c39848a37c1b38f524a050cfde3e2731",
+      "size_bytes": 2694
+    },
+    {
+      "artifact_id": "EVID-T3-002",
+      "path": "datasets/identity_privilege_graph.json",
+      "purpose": "Provides the synthetic identity, group, asset, and relationship graph.",
+      "exists": true,
+      "sha256": "9dd350afd2228514ce7173a105e3c43ffc79d4c00561b72fd0710dc521972c53",
+      "size_bytes": 4300
+    },
+    {
+      "artifact_id": "EVID-T3-003",
+      "path": "output/privilege_graph_summary.json",
+      "purpose": "Summarizes privileged identities, dormant accounts, service-account ownership gaps, and critical paths.",
+      "exists": true,
+      "sha256": "647e9267d1355ca79b69182be9c5a4925c16d474cac9da5fbe4623ac711720ea",
+      "size_bytes": 3742
+    },
+    {
+      "artifact_id": "EVID-T3-004",
+      "path": "output/iam_exposure_findings.json",
+      "purpose": "Records IAM exposure and toxic-permission findings.",
+      "exists": true,
+      "sha256": "84adb3ab3afa15ae9b36a86f7dd3cce65d6737689c2b17e5305420ba8807e43e",
+      "size_bytes": 6879
+    },
+    {
+      "artifact_id": "EVID-T3-005",
+      "path": "output/iam_risk_register.json",
+      "purpose": "Records likelihood, impact, control effectiveness, confidence, blast radius, and residual risk.",
+      "exists": true,
+      "sha256": "5894282d3963416a415eba8e68ced479cadde0dfab74b60aa796b6f16ed3ce03",
+      "size_bytes": 13673
+    },
+    {
+      "artifact_id": "EVID-T3-006",
+      "path": "output/iam_governance_remediation_register.json",
+      "purpose": "Maps risks to controls, frameworks, owners, remediation actions, evidence, and validation.",
+      "exists": true,
+      "sha256": "40fe196edb9e166702cdf62d2466a7af67807067e541718e3bf01ac7621e2888",
+      "size_bytes": 19087
+    }
+  ]
+}

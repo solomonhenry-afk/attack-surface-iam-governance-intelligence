@@ -1,0 +1,385 @@
+{
+  "project": "Lighthouse Technology - Domain 4 Task 3",
+  "analysis": "Identity Risk Scoring and Blast-Radius Analytics",
+  "methodology": {
+    "scale": "1-5",
+    "formula": "Residual Risk = (Likelihood x Impact) x (1 - Control Effectiveness/5) + Blast Radius Adjustment",
+    "risk_bands": {
+      "critical": "16-25",
+      "high": "10-15.99",
+      "medium": "5-9.99",
+      "low": "1-4.99"
+    }
+  },
+  "summary": {
+    "risk_count": 12,
+    "rating_distribution": {
+      "critical": 3,
+      "high": 4,
+      "medium": 4,
+      "low": 1
+    },
+    "blast_radius_distribution": {
+      "5": 3,
+      "3": 3,
+      "2": 3,
+      "4": 1,
+      "1": 2
+    },
+    "highest_residual_risk": 18.0
+  },
+  "risk_register": [
+    {
+      "risk_id": "RISK-007",
+      "finding_id": "F-007",
+      "rule_id": "IAM-EXP-003",
+      "risk_title": "High-privilege service account path to critical asset",
+      "subject": "svc_backup",
+      "risk_description": "High-privilege service account can reach a high-value or critical asset.",
+      "likelihood": 4,
+      "impact": 5,
+      "inherent_risk": 20,
+      "control_effectiveness": 2,
+      "confidence": 5,
+      "blast_radius": 5,
+      "reachable_assets": [
+        "BACKUP-01",
+        "DC-01"
+      ],
+      "residual_risk": 18.0,
+      "risk_rating": "critical",
+      "treatment_recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-008",
+      "finding_id": "F-008",
+      "rule_id": "IAM-EXP-003",
+      "risk_title": "High-privilege service account path to critical asset",
+      "subject": "svc_backup",
+      "risk_description": "High-privilege service account can reach a high-value or critical asset.",
+      "likelihood": 4,
+      "impact": 5,
+      "inherent_risk": 20,
+      "control_effectiveness": 2,
+      "confidence": 5,
+      "blast_radius": 5,
+      "reachable_assets": [
+        "BACKUP-01",
+        "DC-01"
+      ],
+      "residual_risk": 18.0,
+      "risk_rating": "critical",
+      "treatment_recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-012",
+      "finding_id": "F-012",
+      "rule_id": "IAM-EXP-006",
+      "risk_title": "Privilege concentration across multiple high-value assets",
+      "subject": "svc_backup",
+      "risk_description": "Privilege concentration expands potential blast radius across multiple high-value assets.",
+      "likelihood": 4,
+      "impact": 5,
+      "inherent_risk": 20,
+      "control_effectiveness": 2,
+      "confidence": 5,
+      "blast_radius": 5,
+      "reachable_assets": [
+        "BACKUP-01",
+        "DC-01"
+      ],
+      "residual_risk": 18.0,
+      "risk_rating": "critical",
+      "treatment_recommendation": "Reduce privilege concentration, separate administrative duties, and validate whether access can be scoped by system or role.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-011",
+      "finding_id": "F-011",
+      "rule_id": "IAM-EXP-006",
+      "risk_title": "Privilege concentration across multiple high-value assets",
+      "subject": "Server Admins",
+      "risk_description": "Privilege concentration expands potential blast radius across multiple high-value assets.",
+      "likelihood": 4,
+      "impact": 5,
+      "inherent_risk": 20,
+      "control_effectiveness": 2,
+      "confidence": 5,
+      "blast_radius": 3,
+      "reachable_assets": [
+        "APP-01",
+        "BACKUP-01"
+      ],
+      "residual_risk": 15.0,
+      "risk_rating": "high",
+      "treatment_recommendation": "Reduce privilege concentration, separate administrative duties, and validate whether access can be scoped by system or role.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-009",
+      "finding_id": "F-009",
+      "rule_id": "IAM-EXP-003",
+      "risk_title": "High-privilege service account path to critical asset",
+      "subject": "svc_reporting",
+      "risk_description": "High-privilege service account can reach a high-value or critical asset.",
+      "likelihood": 4,
+      "impact": 5,
+      "inherent_risk": 20,
+      "control_effectiveness": 2,
+      "confidence": 5,
+      "blast_radius": 2,
+      "reachable_assets": [
+        "APP-01"
+      ],
+      "residual_risk": 13.5,
+      "risk_rating": "high",
+      "treatment_recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-002",
+      "finding_id": "F-002",
+      "rule_id": "IAM-EXP-001",
+      "risk_title": "Dormant privileged identity",
+      "subject": "svc_reporting",
+      "risk_description": "Dormant privileged identity retains elevated capability.",
+      "likelihood": 3,
+      "impact": 5,
+      "inherent_risk": 15,
+      "control_effectiveness": 2,
+      "confidence": 4,
+      "blast_radius": 2,
+      "reachable_assets": [
+        "APP-01"
+      ],
+      "residual_risk": 10.5,
+      "risk_rating": "high",
+      "treatment_recommendation": "Validate business need, disable or remove elevated access, and retain review evidence.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-006",
+      "finding_id": "F-006",
+      "rule_id": "IAM-EXP-004",
+      "risk_title": "Administrative path to high-value asset",
+      "subject": "Domain Admins",
+      "risk_description": "Administrative path exists to a high-value or critical asset.",
+      "likelihood": 3,
+      "impact": 5,
+      "inherent_risk": 15,
+      "control_effectiveness": 3,
+      "confidence": 5,
+      "blast_radius": 4,
+      "reachable_assets": [
+        "DC-01"
+      ],
+      "residual_risk": 10.5,
+      "risk_rating": "high",
+      "treatment_recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-001",
+      "finding_id": "F-001",
+      "rule_id": "IAM-EXP-001",
+      "risk_title": "Dormant privileged identity",
+      "subject": "legacy.admin",
+      "risk_description": "Dormant privileged identity retains elevated capability.",
+      "likelihood": 3,
+      "impact": 5,
+      "inherent_risk": 15,
+      "control_effectiveness": 2,
+      "confidence": 4,
+      "blast_radius": 1,
+      "reachable_assets": [],
+      "residual_risk": 9.0,
+      "risk_rating": "medium",
+      "treatment_recommendation": "Validate business need, disable or remove elevated access, and retain review evidence.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-004",
+      "finding_id": "F-004",
+      "rule_id": "IAM-EXP-004",
+      "risk_title": "Administrative path to high-value asset",
+      "subject": "Server Admins",
+      "risk_description": "Administrative path exists to a high-value or critical asset.",
+      "likelihood": 3,
+      "impact": 5,
+      "inherent_risk": 15,
+      "control_effectiveness": 3,
+      "confidence": 5,
+      "blast_radius": 3,
+      "reachable_assets": [
+        "APP-01",
+        "BACKUP-01"
+      ],
+      "residual_risk": 9.0,
+      "risk_rating": "medium",
+      "treatment_recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-005",
+      "finding_id": "F-005",
+      "rule_id": "IAM-EXP-004",
+      "risk_title": "Administrative path to high-value asset",
+      "subject": "Server Admins",
+      "risk_description": "Administrative path exists to a high-value or critical asset.",
+      "likelihood": 3,
+      "impact": 5,
+      "inherent_risk": 15,
+      "control_effectiveness": 3,
+      "confidence": 5,
+      "blast_radius": 3,
+      "reachable_assets": [
+        "APP-01",
+        "BACKUP-01"
+      ],
+      "residual_risk": 9.0,
+      "risk_rating": "medium",
+      "treatment_recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-003",
+      "finding_id": "F-003",
+      "rule_id": "IAM-EXP-002",
+      "risk_title": "Service account without accountable owner",
+      "subject": "svc_reporting",
+      "risk_description": "Service account lacks accountable ownership.",
+      "likelihood": 3,
+      "impact": 4,
+      "inherent_risk": 12,
+      "control_effectiveness": 2,
+      "confidence": 4,
+      "blast_radius": 2,
+      "reachable_assets": [
+        "APP-01"
+      ],
+      "residual_risk": 8.7,
+      "risk_rating": "medium",
+      "treatment_recommendation": "Assign a business and technical owner, validate purpose, rotate credentials, and reduce privileges.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    },
+    {
+      "risk_id": "RISK-010",
+      "finding_id": "F-010",
+      "rule_id": "IAM-EXP-005",
+      "risk_title": "Delegated support access combined with active managed-asset session",
+      "subject": "sam.adams",
+      "risk_description": "Delegated support access and active endpoint session create potential privilege-abuse conditions.",
+      "likelihood": 3,
+      "impact": 3,
+      "inherent_risk": 9,
+      "control_effectiveness": 3,
+      "confidence": 3,
+      "blast_radius": 1,
+      "reachable_assets": [],
+      "residual_risk": 3.6,
+      "risk_rating": "low",
+      "treatment_recommendation": "Review delegated rights, session monitoring, endpoint administrative controls, and separation-of-duties requirements.",
+      "evidence_reference": "output/iam_exposure_findings.json"
+    }
+  ],
+  "priority_remediation_queue": [
+    {
+      "priority": 1,
+      "risk_id": "RISK-007",
+      "subject": "svc_backup",
+      "rating": "critical",
+      "residual_risk": 18.0,
+      "recommended_action": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "priority": 2,
+      "risk_id": "RISK-008",
+      "subject": "svc_backup",
+      "rating": "critical",
+      "residual_risk": 18.0,
+      "recommended_action": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "priority": 3,
+      "risk_id": "RISK-012",
+      "subject": "svc_backup",
+      "rating": "critical",
+      "residual_risk": 18.0,
+      "recommended_action": "Reduce privilege concentration, separate administrative duties, and validate whether access can be scoped by system or role."
+    },
+    {
+      "priority": 4,
+      "risk_id": "RISK-011",
+      "subject": "Server Admins",
+      "rating": "high",
+      "residual_risk": 15.0,
+      "recommended_action": "Reduce privilege concentration, separate administrative duties, and validate whether access can be scoped by system or role."
+    },
+    {
+      "priority": 5,
+      "risk_id": "RISK-009",
+      "subject": "svc_reporting",
+      "rating": "high",
+      "residual_risk": 13.5,
+      "recommended_action": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "priority": 6,
+      "risk_id": "RISK-002",
+      "subject": "svc_reporting",
+      "rating": "high",
+      "residual_risk": 10.5,
+      "recommended_action": "Validate business need, disable or remove elevated access, and retain review evidence."
+    },
+    {
+      "priority": 7,
+      "risk_id": "RISK-006",
+      "subject": "Domain Admins",
+      "rating": "high",
+      "residual_risk": 10.5,
+      "recommended_action": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "priority": 8,
+      "risk_id": "RISK-001",
+      "subject": "legacy.admin",
+      "rating": "medium",
+      "residual_risk": 9.0,
+      "recommended_action": "Validate business need, disable or remove elevated access, and retain review evidence."
+    },
+    {
+      "priority": 9,
+      "risk_id": "RISK-004",
+      "subject": "Server Admins",
+      "rating": "medium",
+      "residual_risk": 9.0,
+      "recommended_action": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "priority": 10,
+      "risk_id": "RISK-005",
+      "subject": "Server Admins",
+      "rating": "medium",
+      "residual_risk": 9.0,
+      "recommended_action": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "priority": 11,
+      "risk_id": "RISK-003",
+      "subject": "svc_reporting",
+      "rating": "medium",
+      "residual_risk": 8.7,
+      "recommended_action": "Assign a business and technical owner, validate purpose, rotate credentials, and reduce privileges."
+    },
+    {
+      "priority": 12,
+      "risk_id": "RISK-010",
+      "subject": "sam.adams",
+      "rating": "low",
+      "residual_risk": 3.6,
+      "recommended_action": "Review delegated rights, session monitoring, endpoint administrative controls, and separation-of-duties requirements."
+    }
+  ]
+}

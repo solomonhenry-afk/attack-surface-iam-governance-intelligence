@@ -1,0 +1,84 @@
+{
+  "project": "Lighthouse Technology - Domain 4 Task 3",
+  "task": "Attack-Surface & IAM Governance Intelligence",
+  "inventory_version": "1.0",
+  "data_domains": [
+    {
+      "domain": "user_accounts",
+      "description": "Human identity records including account status, role, owner, privilege level, and last activity.",
+      "primary_sources": [
+        "Active Directory account exports",
+        "Domain 1 identity governance checks",
+        "Splunk authentication investigations"
+      ],
+      "governance_use": [
+        "Dormant account detection",
+        "Privileged account review",
+        "Identity ownership validation"
+      ]
+    },
+    {
+      "domain": "privileged_groups",
+      "description": "Administrative group membership and delegated privilege relationships.",
+      "primary_sources": [
+        "Active Directory privileged-group checks",
+        "Domain 1 privileged access evidence"
+      ],
+      "governance_use": [
+        "Least privilege validation",
+        "Privilege concentration analysis",
+        "Administrative exposure scoring"
+      ]
+    },
+    {
+      "domain": "service_accounts",
+      "description": "Non-human identities, assigned privileges, ownership, and authentication behavior.",
+      "primary_sources": [
+        "Active Directory service-account records",
+        "Windows authentication telemetry",
+        "Splunk event searches"
+      ],
+      "governance_use": [
+        "Service-account ownership review",
+        "Excessive privilege detection",
+        "Credential exposure assessment"
+      ]
+    },
+    {
+      "domain": "asset_inventory",
+      "description": "Systems, business services, and criticality ratings reachable through identity relationships.",
+      "primary_sources": [
+        "Domain 3 network architecture",
+        "Firewall policy engineering artifacts",
+        "Segmentation and trust-boundary validation"
+      ],
+      "governance_use": [
+        "Blast-radius scoring",
+        "Business impact analysis",
+        "Attack-path prioritization"
+      ]
+    },
+    {
+      "domain": "attack_path_relationships",
+      "description": "Identity-to-group, group-to-system, delegation, and administrative-path relationships.",
+      "primary_sources": [
+        "BloodHound exports when available",
+        "Active Directory relationship analysis",
+        "Domain 1 identity attack-path evidence"
+      ],
+      "governance_use": [
+        "Lateral movement analysis",
+        "Privilege inheritance analysis",
+        "Attack-surface measurement"
+      ]
+    }
+  ],
+  "control_scope": [
+    "LT-IAM-001",
+    "LT-IAM-002",
+    "LT-IAM-003",
+    "LT-IAM-004",
+    "LT-IAM-005",
+    "LT-IAM-006"
+  ]
+}

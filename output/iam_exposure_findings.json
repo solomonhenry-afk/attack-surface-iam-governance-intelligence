@@ -1,0 +1,198 @@
+{
+  "project": "Lighthouse Technology - Domain 4 Task 3",
+  "analysis": "IAM Exposure and Toxic-Permission Analysis",
+  "finding_count": 12,
+  "severity_distribution": {
+    "high": 9,
+    "critical": 2,
+    "medium": 1
+  },
+  "rule_distribution": {
+    "IAM-EXP-001": 2,
+    "IAM-EXP-002": 1,
+    "IAM-EXP-004": 3,
+    "IAM-EXP-003": 3,
+    "IAM-EXP-005": 1,
+    "IAM-EXP-006": 2
+  },
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "rule_id": "IAM-EXP-001",
+      "title": "Dormant privileged identity",
+      "severity": "high",
+      "subject": "legacy.admin",
+      "evidence": {
+        "identity_type": "user",
+        "privilege_tier": "domain_admin",
+        "last_logon_days": 120
+      },
+      "recommendation": "Validate business need, disable or remove elevated access, and retain review evidence."
+    },
+    {
+      "finding_id": "F-002",
+      "rule_id": "IAM-EXP-001",
+      "title": "Dormant privileged identity",
+      "severity": "high",
+      "subject": "svc_reporting",
+      "evidence": {
+        "identity_type": "service_account",
+        "privilege_tier": "high",
+        "last_logon_days": 45
+      },
+      "recommendation": "Validate business need, disable or remove elevated access, and retain review evidence."
+    },
+    {
+      "finding_id": "F-003",
+      "rule_id": "IAM-EXP-002",
+      "title": "Service account without accountable owner",
+      "severity": "high",
+      "subject": "svc_reporting",
+      "evidence": {
+        "privilege_tier": "high",
+        "last_logon_days": 45,
+        "owner": "Unassigned"
+      },
+      "recommendation": "Assign a business and technical owner, validate purpose, rotate credentials, and reduce privileges."
+    },
+    {
+      "finding_id": "F-004",
+      "rule_id": "IAM-EXP-004",
+      "title": "Administrative path to high-value asset",
+      "severity": "high",
+      "subject": "Server Admins",
+      "evidence": {
+        "source_type": "group",
+        "relationship": "ADMIN_TO",
+        "target_asset": "APP-01",
+        "asset_criticality": "high",
+        "network_zone": "server_vlan"
+      },
+      "recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "finding_id": "F-005",
+      "rule_id": "IAM-EXP-004",
+      "title": "Administrative path to high-value asset",
+      "severity": "high",
+      "subject": "Server Admins",
+      "evidence": {
+        "source_type": "group",
+        "relationship": "ADMIN_TO",
+        "target_asset": "BACKUP-01",
+        "asset_criticality": "high",
+        "network_zone": "server_vlan"
+      },
+      "recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "finding_id": "F-006",
+      "rule_id": "IAM-EXP-004",
+      "title": "Administrative path to high-value asset",
+      "severity": "critical",
+      "subject": "Domain Admins",
+      "evidence": {
+        "source_type": "group",
+        "relationship": "ADMIN_TO",
+        "target_asset": "DC-01",
+        "asset_criticality": "critical",
+        "network_zone": "management_vlan"
+      },
+      "recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "finding_id": "F-007",
+      "rule_id": "IAM-EXP-003",
+      "title": "High-privilege service account path to critical asset",
+      "severity": "high",
+      "subject": "svc_backup",
+      "evidence": {
+        "source_type": "service_account",
+        "relationship": "ADMIN_TO",
+        "target_asset": "BACKUP-01",
+        "asset_criticality": "high",
+        "network_zone": "server_vlan"
+      },
+      "recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "finding_id": "F-008",
+      "rule_id": "IAM-EXP-003",
+      "title": "High-privilege service account path to critical asset",
+      "severity": "critical",
+      "subject": "svc_backup",
+      "evidence": {
+        "source_type": "service_account",
+        "relationship": "CAN_RDP_TO",
+        "target_asset": "DC-01",
+        "asset_criticality": "critical",
+        "network_zone": "management_vlan"
+      },
+      "recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "finding_id": "F-009",
+      "rule_id": "IAM-EXP-003",
+      "title": "High-privilege service account path to critical asset",
+      "severity": "high",
+      "subject": "svc_reporting",
+      "evidence": {
+        "source_type": "service_account",
+        "relationship": "ADMIN_TO",
+        "target_asset": "APP-01",
+        "asset_criticality": "high",
+        "network_zone": "server_vlan"
+      },
+      "recommendation": "Review access necessity, enforce least privilege, apply segmentation controls, and monitor privileged activity."
+    },
+    {
+      "finding_id": "F-010",
+      "rule_id": "IAM-EXP-005",
+      "title": "Delegated support access combined with active managed-asset session",
+      "severity": "medium",
+      "subject": "sam.adams",
+      "evidence": {
+        "group": "Helpdesk",
+        "condition": "Active session on managed endpoint"
+      },
+      "recommendation": "Review delegated rights, session monitoring, endpoint administrative controls, and separation-of-duties requirements."
+    },
+    {
+      "finding_id": "F-011",
+      "rule_id": "IAM-EXP-006",
+      "title": "Privilege concentration across multiple high-value assets",
+      "severity": "high",
+      "subject": "Server Admins",
+      "evidence": {
+        "source_type": "group",
+        "reachable_assets": [
+          "APP-01",
+          "BACKUP-01"
+        ],
+        "path_count": 2
+      },
+      "recommendation": "Reduce privilege concentration, separate administrative duties, and validate whether access can be scoped by system or role."
+    },
+    {
+      "finding_id": "F-012",
+      "rule_id": "IAM-EXP-006",
+      "title": "Privilege concentration across multiple high-value assets",
+      "severity": "high",
+      "subject": "svc_backup",
+      "evidence": {
+        "source_type": "service_account",
+        "reachable_assets": [
+          "BACKUP-01",
+          "DC-01"
+        ],
+        "path_count": 2
+      },
+      "recommendation": "Reduce privilege concentration, separate administrative duties, and validate whether access can be scoped by system or role."
+    }
+  ],
+  "governance_summary": {
+    "high_or_critical_findings": 11,
+    "next_phase": "Phase D \u2014 Identity Risk Scoring and Blast-Radius Analytics",
+    "note": "Findings are generated from a synthetic training graph and should be replaced or enriched with authorized enterprise data in a production environment."
+  }
+}

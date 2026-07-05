@@ -1,0 +1,138 @@
+{
+  "project": "Lighthouse Technology - Domain 4 Task 3",
+  "graph_version": "1.0",
+  "summary": {
+    "total_nodes": 14,
+    "total_edges": 13,
+    "node_types": {
+      "user": 3,
+      "service_account": 2,
+      "group": 3,
+      "asset": 4,
+      "control": 2
+    },
+    "relationship_types": {
+      "MEMBER_OF": 3,
+      "ADMIN_TO": 6,
+      "HAS_SESSION_ON": 1,
+      "CAN_RDP_TO": 1,
+      "SUPPORTS_CONTROL": 2
+    },
+    "privileged_identity_count": 4,
+    "dormant_privileged_identity_count": 2,
+    "unassigned_service_account_count": 1,
+    "critical_asset_path_count": 6
+  },
+  "privileged_identities": [
+    {
+      "id": "user_olivia_admin",
+      "name": "olivia.admin",
+      "type": "user",
+      "privilege_tier": "domain_admin",
+      "last_logon_days": 1,
+      "owner": "Infrastructure"
+    },
+    {
+      "id": "user_legacy_admin",
+      "name": "legacy.admin",
+      "type": "user",
+      "privilege_tier": "domain_admin",
+      "last_logon_days": 120,
+      "owner": "Unknown"
+    },
+    {
+      "id": "svc_backup",
+      "name": "svc_backup",
+      "type": "service_account",
+      "privilege_tier": "high",
+      "last_logon_days": 1,
+      "owner": "Infrastructure Team"
+    },
+    {
+      "id": "svc_reporting",
+      "name": "svc_reporting",
+      "type": "service_account",
+      "privilege_tier": "high",
+      "last_logon_days": 45,
+      "owner": "Unassigned"
+    }
+  ],
+  "dormant_privileged_identities": [
+    {
+      "id": "user_legacy_admin",
+      "name": "legacy.admin",
+      "privilege_tier": "domain_admin",
+      "last_logon_days": 120
+    },
+    {
+      "id": "svc_reporting",
+      "name": "svc_reporting",
+      "privilege_tier": "high",
+      "last_logon_days": 45
+    }
+  ],
+  "unassigned_service_accounts": [
+    {
+      "id": "svc_reporting",
+      "name": "svc_reporting",
+      "privilege_tier": "high",
+      "last_logon_days": 45
+    }
+  ],
+  "critical_asset_paths": [
+    {
+      "identity_or_group": "Server Admins",
+      "source_type": "group",
+      "relationship": "ADMIN_TO",
+      "target_asset": "APP-01",
+      "asset_criticality": "high",
+      "network_zone": "server_vlan"
+    },
+    {
+      "identity_or_group": "Server Admins",
+      "source_type": "group",
+      "relationship": "ADMIN_TO",
+      "target_asset": "BACKUP-01",
+      "asset_criticality": "high",
+      "network_zone": "server_vlan"
+    },
+    {
+      "identity_or_group": "Domain Admins",
+      "source_type": "group",
+      "relationship": "ADMIN_TO",
+      "target_asset": "DC-01",
+      "asset_criticality": "critical",
+      "network_zone": "management_vlan"
+    },
+    {
+      "identity_or_group": "svc_backup",
+      "source_type": "service_account",
+      "relationship": "ADMIN_TO",
+      "target_asset": "BACKUP-01",
+      "asset_criticality": "high",
+      "network_zone": "server_vlan"
+    },
+    {
+      "identity_or_group": "svc_backup",
+      "source_type": "service_account",
+      "relationship": "CAN_RDP_TO",
+      "target_asset": "DC-01",
+      "asset_criticality": "critical",
+      "network_zone": "management_vlan"
+    },
+    {
+      "identity_or_group": "svc_reporting",
+      "source_type": "service_account",
+      "relationship": "ADMIN_TO",
+      "target_asset": "APP-01",
+      "asset_criticality": "high",
+      "network_zone": "server_vlan"
+    }
+  ],
+  "governance_observations": [
+    "Privileged identities require periodic ownership and activity review.",
+    "Dormant privileged accounts require remediation priority because they retain elevated capability without recent use.",
+    "Unassigned service accounts create accountability and lifecycle-governance risk.",
+    "Administrative and remote-access paths to high-value assets require blast-radius analysis."
+  ]
+}

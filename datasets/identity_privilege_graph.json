@@ -1,0 +1,180 @@
+{
+  "project": "Lighthouse Technology - Domain 4 Task 3",
+  "graph_version": "1.0",
+  "nodes": [
+    {
+      "id": "user_sam_adams",
+      "type": "user",
+      "name": "sam.adams",
+      "department": "IT Operations",
+      "privilege_tier": "standard",
+      "enabled": true,
+      "last_logon_days": 2
+    },
+    {
+      "id": "user_olivia_admin",
+      "type": "user",
+      "name": "olivia.admin",
+      "department": "Infrastructure",
+      "privilege_tier": "domain_admin",
+      "enabled": true,
+      "last_logon_days": 1
+    },
+    {
+      "id": "user_legacy_admin",
+      "type": "user",
+      "name": "legacy.admin",
+      "department": "Unknown",
+      "privilege_tier": "domain_admin",
+      "enabled": true,
+      "last_logon_days": 120
+    },
+    {
+      "id": "svc_backup",
+      "type": "service_account",
+      "name": "svc_backup",
+      "owner": "Infrastructure Team",
+      "privilege_tier": "high",
+      "enabled": true,
+      "last_logon_days": 1
+    },
+    {
+      "id": "svc_reporting",
+      "type": "service_account",
+      "name": "svc_reporting",
+      "owner": "Unassigned",
+      "privilege_tier": "high",
+      "enabled": true,
+      "last_logon_days": 45
+    },
+    {
+      "id": "group_helpdesk",
+      "type": "group",
+      "name": "Helpdesk",
+      "classification": "delegated_access"
+    },
+    {
+      "id": "group_server_admins",
+      "type": "group",
+      "name": "Server Admins",
+      "classification": "privileged"
+    },
+    {
+      "id": "group_domain_admins",
+      "type": "group",
+      "name": "Domain Admins",
+      "classification": "critical_privileged"
+    },
+    {
+      "id": "asset_ws_014",
+      "type": "asset",
+      "name": "WS-014",
+      "asset_class": "workstation",
+      "criticality": "medium",
+      "network_zone": "user_vlan"
+    },
+    {
+      "id": "asset_app_01",
+      "type": "asset",
+      "name": "APP-01",
+      "asset_class": "application_server",
+      "criticality": "high",
+      "network_zone": "server_vlan"
+    },
+    {
+      "id": "asset_backup_01",
+      "type": "asset",
+      "name": "BACKUP-01",
+      "asset_class": "backup_server",
+      "criticality": "high",
+      "network_zone": "server_vlan"
+    },
+    {
+      "id": "asset_dc_01",
+      "type": "asset",
+      "name": "DC-01",
+      "asset_class": "domain_controller",
+      "criticality": "critical",
+      "network_zone": "management_vlan"
+    },
+    {
+      "id": "control_lt_iam_001",
+      "type": "control",
+      "name": "LT-IAM-001",
+      "objective": "Privileged access is inventoried and monitored"
+    },
+    {
+      "id": "control_lt_iam_005",
+      "type": "control",
+      "name": "LT-IAM-005",
+      "objective": "Identity attack paths are evaluated for blast-radius risk"
+    }
+  ],
+  "edges": [
+    {
+      "source": "user_sam_adams",
+      "target": "group_helpdesk",
+      "relationship": "MEMBER_OF"
+    },
+    {
+      "source": "group_helpdesk",
+      "target": "asset_ws_014",
+      "relationship": "ADMIN_TO"
+    },
+    {
+      "source": "user_sam_adams",
+      "target": "asset_ws_014",
+      "relationship": "HAS_SESSION_ON"
+    },
+    {
+      "source": "user_olivia_admin",
+      "target": "group_server_admins",
+      "relationship": "MEMBER_OF"
+    },
+    {
+      "source": "group_server_admins",
+      "target": "asset_app_01",
+      "relationship": "ADMIN_TO"
+    },
+    {
+      "source": "group_server_admins",
+      "target": "asset_backup_01",
+      "relationship": "ADMIN_TO"
+    },
+    {
+      "source": "user_legacy_admin",
+      "target": "group_domain_admins",
+      "relationship": "MEMBER_OF"
+    },
+    {
+      "source": "group_domain_admins",
+      "target": "asset_dc_01",
+      "relationship": "ADMIN_TO"
+    },
+    {
+      "source": "svc_backup",
+      "target": "asset_backup_01",
+      "relationship": "ADMIN_TO"
+    },
+    {
+      "source": "svc_backup",
+      "target": "asset_dc_01",
+      "relationship": "CAN_RDP_TO"
+    },
+    {
+      "source": "svc_reporting",
+      "target": "asset_app_01",
+      "relationship": "ADMIN_TO"
+    },
+    {
+      "source": "group_domain_admins",
+      "target": "control_lt_iam_001",
+      "relationship": "SUPPORTS_CONTROL"
+    },
+    {
+      "source": "asset_dc_01",
+      "target": "control_lt_iam_005",
+      "relationship": "SUPPORTS_CONTROL"
+    }
+  ]
+}
